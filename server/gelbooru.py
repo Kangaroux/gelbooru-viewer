@@ -1,4 +1,5 @@
 from enum import Enum
+
 import requests
 
 
@@ -9,6 +10,22 @@ class TagType(Enum):
     Deprecated = "deprecated"
     General = "general"
     Metadata = "metadata"
+
+
+def get_posts(query: str, page: int) -> dict:
+    resp = requests.get(
+        "https://gelbooru.com/index.php",
+        {
+            "page": "dapi",
+            "s": "post",
+            "q": "index",
+            "tags": query,
+            "pid": page,
+            "json": 1,
+        },
+    )
+
+    return resp.json()
 
 
 def get_tag_autocomplete_suggestions(tag: str) -> dict:
