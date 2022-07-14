@@ -8,7 +8,7 @@ from . import gelbooru as gb
 app = Flask(
     __name__,
     static_url_path="/static",
-    static_folder="dist",
+    static_folder="../dist",
     template_folder=".",
 )
 
