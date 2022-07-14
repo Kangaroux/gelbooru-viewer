@@ -2,7 +2,8 @@
   "name": "gelbooru-viewer",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild client/index.tsx --bundle --minify --sourcemap --outfile=dist/app.js"
+    "build": "esbuild --bundle --minify --sourcemap --outdir=dist app=client/index.tsx style=client/style.css",
+    "watch": "esbuild --bundle --watch --sourcemap --outdir=dist app=client/index.tsx style=client/style.css"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
@@ -11,6 +12,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
