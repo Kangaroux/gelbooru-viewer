@@ -1,5 +1,5 @@
+*.log
 *.pyc
-*.sqlite3
 
 dist/
 node_modules/
