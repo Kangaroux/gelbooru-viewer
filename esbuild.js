@@ -1,8 +1,9 @@
 const esbuild = require("esbuild");
+const { sassPlugin } = require("esbuild-sass-plugin");
 
 const entryPoints = {
     app: "client/index.tsx",
-    style: "client/style.css",
+    style: "client/style.scss",
 };
 
 const outdir = "dist";
@@ -13,6 +14,7 @@ const buildOptions = {
     sourcemap: true,
     outdir,
     entryPoints,
+    plugins: [sassPlugin()],
 };
 
 if (process.argv.length < 3) {

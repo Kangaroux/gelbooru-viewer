@@ -1,0 +1,38 @@
+@import "normalize.css";
+
+// The original colors from gelbooru
+$tag-artist-color: #A00;
+$tag-character-color: #0A0;
+$tag-copyright-color: #A0A;
+$tag-general-color: #337AB7;
+$tag-metadata-color: #F80;
+
+body {
+    background-color: #151515;
+    color: #DDD;
+    font-family: sans-serif;
+}
+
+.tag-artist {
+    color: adjust-color($tag-artist-color, $saturation: -10%, $lightness: 30%);
+}
+
+.tag-character {
+    color: adjust-color($tag-character-color, $saturation: -20%, $lightness: 10%);
+}
+
+.tag-copyright {
+    color: adjust-color($tag-copyright-color, $saturation: -20%, $lightness: 30%);
+}
+
+.tag-general {
+    color: adjust-color($tag-general-color, $lightness: 10%);
+}
+
+.tag-metadata {
+    color: adjust-color($tag-metadata-color, $lightness: 10%);
+}
+
+.gray {
+    color: #666;
+}
