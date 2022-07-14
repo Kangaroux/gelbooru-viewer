@@ -83,6 +83,37 @@ export async function fetchPosts(query: string, page = 0) {
     return ret;
 }
 
+export type TagType = "artist" | "copyright" | "character" | "general" | "metadata";
+
+export interface Tag {
+    count: number;
+    tag: string;
+    type: TagType;
+}
+
+export interface TagAutocompleteResponse {
+    suggestions: Tag[];
+}
+
 export async function fetchTagAutocomplete(query: string) {
-    return fetch(`/api/tag-autocomplete?q=${query}`);
+    const resp = await fetch(`/api/tag-autocomplete?q=${query}`);
+
+    if (!resp.ok)
+        throw new APIError(resp);
+
+    const data = await resp.json();
+
+    let ret: TagAutocompleteResponse = {
+        suggestions: []
+    }
+
+    for (const s of data["suggestions"]) {
+        ret.suggestions.push({
+            count: s["count"],
+            tag: s["tag"],
+            type: s["type"],
+        });
+    }
+
+    return ret;
 }
