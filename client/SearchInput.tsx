@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchTagAutocomplete, Tag, TagAutocompleteResponse } from "./api";
+import { TagComponent } from "./Tag";
 
 /**
  * The autocomplete fetch delay (in milliseconds). Adding a short delay before
@@ -38,7 +39,7 @@ export const SearchInput = () => {
     return <div>
         <input type="text" value={val} onInput={onInput} />
         <li>
-            {suggestions.map(s => <ul>{s.tag} ({s.count})</ul>)}
+            {suggestions.map(s => <ul><TagComponent tag={s} /></ul>)}
         </li>
     </div>;
 }

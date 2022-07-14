@@ -5,3 +5,27 @@ body {
     color: #DDD;
     font-family: sans-serif;
 }
+
+.tag-artist {
+    color: #A00;
+}
+
+.tag-character {
+    color: #0A0;
+}
+
+.tag-copyright {
+    color: #A0A;
+}
+
+.tag-general {
+    color: #337AB7;
+}
+
+.tag-metadata {
+    color: #F80;
+}
+
+.gray {
+    color: #666;
+}
