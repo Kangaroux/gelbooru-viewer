@@ -14,7 +14,7 @@ export interface Props {
     tag: Tag;
 }
 
-export const TagSuggestion = ({ tag }: Props) => {
+export const Suggestion = ({ tag }: Props) => {
     const className = classNameMap[tag.type];
     return (
         <div>

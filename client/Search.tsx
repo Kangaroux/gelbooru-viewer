@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchTagAutocomplete, Tag } from "./api";
-import { TagSuggestion } from "./TagSuggestion";
+import { Suggestion } from "./Suggestion";
+import { SuggestionList } from "./SearchSuggestions";
 
 /**
  * The autocomplete fetch delay (in milliseconds). Adding a short delay before
@@ -10,13 +11,14 @@ import { TagSuggestion } from "./TagSuggestion";
  */
 const fetchDelay = 200;
 
-export const TagSearch = () => {
+export const Search = () => {
     const [suggestions, setSuggestions] = useState<Tag[]>([]);
     const [timeoutId, setTimeoutId] = useState(0);
     const [val, setVal] = useState("");
 
     const onInput = async (e: React.FormEvent<HTMLInputElement>) => {
         const cleaned = e.currentTarget.value.trim();
+
         setVal(cleaned);
         clearTimeout(timeoutId);
 
@@ -36,18 +38,14 @@ export const TagSearch = () => {
         };
 
         setTimeoutId(setTimeout(fetchSuggestions, fetchDelay));
+
+        return () => clearTimeout(timeoutId);
     }, [val]);
 
     return (
         <div>
             <input type="text" value={val} onInput={onInput} />
-            <li>
-                {suggestions.map((s) => (
-                    <ul>
-                        <TagSuggestion tag={s} />
-                    </ul>
-                ))}
-            </li>
+            <SuggestionList tags={suggestions} />
         </div>
     );
 };

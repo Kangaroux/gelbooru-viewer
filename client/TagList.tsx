@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "./api";
-import { TagListItem } from "./TagListItem";
+import { TagComponent } from "./Tag";
 
 export interface Props {
     tags: Tag[];
@@ -11,7 +11,7 @@ export const TagList = ({ tags }: Props) => {
         <div>
             <ul>
                 {tags.map((t) => (
-                    <TagListItem tag={t} />
+                    <TagComponent tag={t} />
                 ))}
             </ul>
         </div>

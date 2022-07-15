@@ -5,6 +5,6 @@ export interface Props {
     tag: Tag;
 }
 
-export const TagListItem = ({ tag }: Props) => {
+export const TagComponent = ({ tag }: Props) => {
     return <div>{tag.tag}</div>;
 };
