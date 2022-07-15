@@ -3,11 +3,11 @@ import React from "react";
 import { Tag, TagType } from "../types";
 
 const classNameMap: Record<TagType, string> = {
-    artist: "tag-artist",
-    character: "tag-character",
-    copyright: "tag-copyright",
-    general: "tag-general",
-    metadata: "tag-metadata",
+    artist: "artist",
+    character: "character",
+    copyright: "copyright",
+    general: "general",
+    metadata: "metadata",
 };
 
 export interface Props {
@@ -17,9 +17,9 @@ export interface Props {
 export const Suggestion = ({ tag }: Props) => {
     const className = classNameMap[tag.type];
     return (
-        <div>
+        <div className="suggestion">
             <span className={className}>{tag.tag}</span>{" "}
-            <span className="gray">{tag.count}</span>
+            <span className="color-gray">{tag.count}</span>
         </div>
     );
 };

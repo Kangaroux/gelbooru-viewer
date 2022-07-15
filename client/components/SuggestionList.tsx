@@ -8,7 +8,7 @@ export interface Props {
 
 export const SuggestionList = ({ tags }: Props) => {
     return (
-        <div>
+        <div className="suggestion-list">
             {tags.map((t) => (
                 <Suggestion tag={t} />
             ))}

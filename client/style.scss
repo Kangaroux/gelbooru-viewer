@@ -1,5 +1,8 @@
 @import "normalize.css";
 
+$bg-color: #151515;
+$text-color: #ddd;
+
 // The original colors from gelbooru
 $tag-artist-color: #a00;
 $tag-character-color: #0a0;
@@ -8,39 +11,56 @@ $tag-general-color: #337ab7;
 $tag-metadata-color: #f80;
 
 body {
-    background-color: #151515;
-    color: #ddd;
+    background-color: $bg-color;
+    color: $text-color;
     font-family: sans-serif;
 }
 
-.tag-artist {
-    color: adjust-color($tag-artist-color, $saturation: -10%, $lightness: 30%);
-}
-
-.tag-character {
-    color: adjust-color(
-        $tag-character-color,
-        $saturation: -20%,
-        $lightness: 10%
-    );
-}
-
-.tag-copyright {
-    color: adjust-color(
-        $tag-copyright-color,
-        $saturation: -20%,
-        $lightness: 30%
-    );
-}
-
-.tag-general {
-    color: adjust-color($tag-general-color, $lightness: 10%);
-}
-
-.tag-metadata {
-    color: adjust-color($tag-metadata-color, $lightness: 10%);
-}
-
-.gray {
+.color-gray {
     color: #666;
+}
+
+.suggestion-list {
+}
+
+.suggestion {
+    padding: 5px 10px;
+    line-height: 1.5em;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .artist {
+        color: adjust-color(
+            $tag-artist-color,
+            $saturation: -10%,
+            $lightness: 30%
+        );
+    }
+
+    .character {
+        color: adjust-color(
+            $tag-character-color,
+            $saturation: -20%,
+            $lightness: 10%
+        );
+    }
+
+    .copyright {
+        color: adjust-color(
+            $tag-copyright-color,
+            $saturation: -20%,
+            $lightness: 30%
+        );
+    }
+
+    .general {
+        color: adjust-color($tag-general-color, $lightness: 10%);
+    }
+
+    .metadata {
+        color: adjust-color($tag-metadata-color, $lightness: 10%);
+    }
 }
