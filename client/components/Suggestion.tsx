@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tag, TagType } from "./api";
+import { Tag, TagType } from "../types";
 
 const classNameMap: Record<TagType, string> = {
     artist: "tag-artist",

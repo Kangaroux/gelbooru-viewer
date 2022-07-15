@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Post, Tag } from "./api";
+import { Post, Tag } from "./types";
 
 export class Store {
     posts: Post[];

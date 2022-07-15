@@ -1,3 +1,5 @@
+import { Post, Tag } from "./types";
+
 export class APIError extends Error {
     response: Response;
 
@@ -5,34 +7,6 @@ export class APIError extends Error {
         super();
         this.response = response;
     }
-}
-
-export type PostRating = "general" | "sensitive" | "questionable" | "explicit";
-
-export interface Post {
-    id: number;
-    createdAt: Date;
-    rating: PostRating;
-    tags: string[];
-    hasSample: boolean;
-
-    preview: {
-        width: number;
-        height: number;
-        url: string;
-    };
-
-    sample: {
-        width: number;
-        height: number;
-        url: string;
-    };
-
-    full: {
-        width: number;
-        height: number;
-        url: string;
-    };
 }
 
 export interface PostsResponse {
@@ -82,19 +56,6 @@ export async function fetchPosts(query: string, page = 0) {
     }
 
     return ret;
-}
-
-export type TagType =
-    | "artist"
-    | "copyright"
-    | "character"
-    | "general"
-    | "metadata";
-
-export interface Tag {
-    count: number;
-    tag: string;
-    type: TagType;
 }
 
 export interface TagAutocompleteResponse {

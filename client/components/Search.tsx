@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchTagAutocomplete, Tag } from "./api";
-import { Suggestion } from "./Suggestion";
-import { SuggestionList } from "./SearchSuggestions";
+import { fetchTagAutocomplete } from "../api";
+import { Tag } from "../types";
+import { SuggestionList } from "./SuggestionList";
 
 /**
  * The autocomplete fetch delay (in milliseconds). Adding a short delay before

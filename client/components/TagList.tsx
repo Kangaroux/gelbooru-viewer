@@ -1,5 +1,5 @@
 import React from "react";
-import { Tag } from "./api";
+import { Tag } from "../types";
 import { TagComponent } from "./Tag";
 
 export interface Props {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Tag } from "./api";
+import { Tag } from "../types";
 import { Suggestion } from "./Suggestion";
 
 export interface Props {
