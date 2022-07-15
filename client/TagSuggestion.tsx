@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tag, TagType } from "./api"
+import { Tag, TagType } from "./api";
 
 const classNameMap: Record<TagType, string> = {
     artist: "tag-artist",
@@ -8,7 +8,7 @@ const classNameMap: Record<TagType, string> = {
     copyright: "tag-copyright",
     general: "tag-general",
     metadata: "tag-metadata",
-}
+};
 
 export interface Props {
     tag: Tag;
@@ -16,7 +16,10 @@ export interface Props {
 
 export const TagSuggestion = ({ tag }: Props) => {
     const className = classNameMap[tag.type];
-    return <div>
-        <span className={className}>{tag.tag}</span> <span className="gray">{tag.count}</span>
-    </div>;
-}
+    return (
+        <div>
+            <span className={className}>{tag.tag}</span>{" "}
+            <span className="gray">{tag.count}</span>
+        </div>
+    );
+};

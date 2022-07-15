@@ -13,14 +13,16 @@ export class Store {
     }
 
     addTag(tag: Tag) {
-        if (!this.tags.find(t => t.tag === tag.tag))
+        if (!this.tags.find((t) => t.tag === tag.tag)) {
             this.tags.push(tag);
+        }
     }
 
     removeTag(tag: Tag) {
-        const i = this.tags.findIndex(t => t.tag === tag.tag);
+        const i = this.tags.findIndex((t) => t.tag === tag.tag);
 
-        if (i !== -1)
+        if (i !== -1) {
             this.tags.slice(i, 1);
+        }
     }
 }

@@ -1,15 +1,15 @@
 @import "normalize.css";
 
 // The original colors from gelbooru
-$tag-artist-color: #A00;
-$tag-character-color: #0A0;
-$tag-copyright-color: #A0A;
-$tag-general-color: #337AB7;
-$tag-metadata-color: #F80;
+$tag-artist-color: #a00;
+$tag-character-color: #0a0;
+$tag-copyright-color: #a0a;
+$tag-general-color: #337ab7;
+$tag-metadata-color: #f80;
 
 body {
     background-color: #151515;
-    color: #DDD;
+    color: #ddd;
     font-family: sans-serif;
 }
 
@@ -18,11 +18,19 @@ body {
 }
 
 .tag-character {
-    color: adjust-color($tag-character-color, $saturation: -20%, $lightness: 10%);
+    color: adjust-color(
+        $tag-character-color,
+        $saturation: -20%,
+        $lightness: 10%
+    );
 }
 
 .tag-copyright {
-    color: adjust-color($tag-copyright-color, $saturation: -20%, $lightness: 30%);
+    color: adjust-color(
+        $tag-copyright-color,
+        $saturation: -20%,
+        $lightness: 30%
+    );
 }
 
 .tag-general {

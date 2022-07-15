@@ -20,26 +20,34 @@ export const TagSearch = () => {
         setVal(cleaned);
         clearTimeout(timeoutId);
 
-        if (!cleaned.length)
+        if (!cleaned.length) {
             setSuggestions([]);
-    }
+        }
+    };
 
     useEffect(() => {
-        if (!val.length)
+        if (!val.length) {
             return;
+        }
 
         const fetchSuggestions = async () => {
             const resp = await fetchTagAutocomplete(val);
             setSuggestions(resp.suggestions);
-        }
+        };
 
         setTimeoutId(setTimeout(fetchSuggestions, fetchDelay));
     }, [val]);
 
-    return <div>
-        <input type="text" value={val} onInput={onInput} />
-        <li>
-            {suggestions.map(s => <ul><TagSuggestion tag={s} /></ul>)}
-        </li>
-    </div>;
-}
+    return (
+        <div>
+            <input type="text" value={val} onInput={onInput} />
+            <li>
+                {suggestions.map((s) => (
+                    <ul>
+                        <TagSuggestion tag={s} />
+                    </ul>
+                ))}
+            </li>
+        </div>
+    );
+};
