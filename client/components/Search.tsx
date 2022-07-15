@@ -1,4 +1,6 @@
+import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
+import { store } from "..";
 import { fetchTagAutocomplete } from "../api";
 import { Tag } from "../types";
 import { SuggestionList } from "./SuggestionList";
@@ -11,10 +13,13 @@ import { SuggestionList } from "./SuggestionList";
  */
 const fetchDelay = 200;
 
-export const Search = () => {
+export const Search = observer(() => {
+    const [focused, setFocused] = useState(false);
     const [suggestions, setSuggestions] = useState<Tag[]>([]);
     const [timeoutId, setTimeoutId] = useState(0);
     const [val, setVal] = useState("");
+
+    const showSuggestions = !!(focused || suggestions.length);
 
     const onInput = async (e: React.FormEvent<HTMLInputElement>) => {
         const cleaned = e.currentTarget.value.trim();
@@ -44,8 +49,19 @@ export const Search = () => {
 
     return (
         <div>
-            <input type="text" value={val} onInput={onInput} />
-            <SuggestionList tags={suggestions} />
+            <input
+                type="text"
+                value={val}
+                onBlur={() => setFocused(false)}
+                onFocus={() => setFocused(true)}
+                onInput={onInput}
+            />
+
+            {showSuggestions && (
+                <SuggestionList
+                    tags={val.length ? suggestions : store.mostPopularTags}
+                />
+            )}
         </div>
     );
-};
+});

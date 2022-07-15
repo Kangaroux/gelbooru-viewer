@@ -142,7 +142,6 @@ def tag_autocomplete():
         q: The tag name to autocomplete.
     Responses:
         200: A list of up to 20 tag suggestions (excluding deprecated tags).
-        400: Error response if the q param is blank or missing.
     Schema:
         {
             "suggestions": [
@@ -154,14 +153,7 @@ def tag_autocomplete():
             ]
         }
     """
-    query = request.args.get("q")
-
-    if not query:
-        return message_response(
-            "Required query param 'q' is blank or missing.",
-            status=400,
-        )
-
+    query = request.args.get("q", "")
     gb_resp = gb.get_tag_autocomplete_suggestions(query)
     data = []
 

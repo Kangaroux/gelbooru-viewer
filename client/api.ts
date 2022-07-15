@@ -85,3 +85,7 @@ export async function fetchTagAutocomplete(query: string) {
 
     return ret;
 }
+
+export async function fetchMostPopularTags() {
+    return fetchTagAutocomplete("");
+}

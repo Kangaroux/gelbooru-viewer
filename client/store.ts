@@ -3,13 +3,19 @@ import { Post, Tag } from "./types";
 
 export class Store {
     posts: Post[];
+    mostPopularTags: Tag[];
     tags: Tag[];
 
     constructor() {
         this.posts = [];
+        this.mostPopularTags = [];
         this.tags = [];
 
         makeAutoObservable(this);
+    }
+
+    setMostPopularTags(tags: Tag[]) {
+        this.mostPopularTags = tags;
     }
 
     addTag(tag: Tag) {
