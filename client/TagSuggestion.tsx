@@ -14,9 +14,9 @@ export interface Props {
     tag: Tag;
 }
 
-export const TagComponent = ({ tag }: Props) => {
+export const TagSuggestion = ({ tag }: Props) => {
     const className = classNameMap[tag.type];
-    return <>
+    return <div>
         <span className={className}>{tag.tag}</span> <span className="gray">{tag.count}</span>
-    </>;
+    </div>;
 }

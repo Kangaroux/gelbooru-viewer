@@ -1,10 +1,7 @@
 import React from "react";
-import { SearchInput } from "./SearchInput";
+import { TagSearch } from "./TagSearch";
 
 
 export const App = () => {
-    return <div>
-        <h1>Hello world</h1>
-        <SearchInput />
-    </div>;
+    return <div><TagSearch /></div>;
 }
