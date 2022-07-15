@@ -170,6 +170,8 @@ def tag_autocomplete():
 
         if tag_type == gb.TagType.Deprecated:
             continue
+        elif tag["count"] == 0:
+            continue
 
         data.append(
             {
