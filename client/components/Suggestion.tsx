@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 import { Tag, TagType } from "../types";
@@ -11,15 +12,17 @@ const classNameMap: Record<TagType, string> = {
 };
 
 export interface Props {
+    onClick: () => void;
     tag: Tag;
 }
 
-export const Suggestion = ({ tag }: Props) => {
+export const Suggestion = observer(({ onClick, tag }: Props) => {
     const className = classNameMap[tag.type];
+
     return (
-        <div className="suggestion">
+        <div className="suggestion" onClick={onClick}>
             <span className={className}>{tag.tag}</span>{" "}
             <span className="color-gray">{tag.count}</span>
         </div>
     );
-};
+});

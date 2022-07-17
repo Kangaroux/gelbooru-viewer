@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
+import React, { useEffect, useRef, useState } from "react";
 import { store } from "..";
 import { fetchTagAutocomplete } from "../api";
 import { Tag } from "../types";
@@ -18,22 +18,24 @@ export const Search = observer(() => {
     const [suggestions, setSuggestions] = useState<Tag[]>([]);
     const [timeoutId, setTimeoutId] = useState(0);
     const [val, setVal] = useState("");
+    const suggestionRef = useRef(null);
 
     const showSuggestions = !!(focused || suggestions.length);
 
     const onInput = async (e: React.FormEvent<HTMLInputElement>) => {
-        const cleaned = e.currentTarget.value.trim();
+        setVal(e.currentTarget.value.trim());
+    };
 
-        setVal(cleaned);
-        clearTimeout(timeoutId);
-
-        if (!cleaned.length) {
-            setSuggestions([]);
-        }
+    const onPickSuggestion = (tag: Tag) => {
+        setVal("");
+        store.addTag(tag);
     };
 
     useEffect(() => {
+        clearTimeout(timeoutId);
+
         if (!val.length) {
+            setSuggestions([]);
             return;
         }
 
@@ -52,16 +54,24 @@ export const Search = observer(() => {
             <input
                 type="text"
                 value={val}
-                onBlur={() => setFocused(false)}
+                onBlur={(e) => {
+                    console.log(e.relatedTarget, suggestionRef?.current);
+                    if (true) {
+                        setFocused(false);
+                    }
+                }}
                 onFocus={() => setFocused(true)}
                 onInput={onInput}
             />
 
-            {showSuggestions && (
-                <SuggestionList
-                    tags={val.length ? suggestions : store.mostPopularTags}
-                />
-            )}
+            <div ref={suggestionRef}>
+                {showSuggestions && (
+                    <SuggestionList
+                        onPick={onPickSuggestion}
+                        tags={val.length ? suggestions : store.mostPopularTags}
+                    />
+                )}
+            </div>
         </div>
     );
 });
