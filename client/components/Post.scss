@@ -1,22 +1,22 @@
-.image-container {
+.post-container {
     line-height: 0;
     margin-bottom: 20px;
 
     &,
-    .image,
+    .post,
     img {
         max-width: 100%;
     }
 
-    &:hover .image-overlay {
+    &:hover .post-overlay {
         opacity: 1;
     }
 
-    .image {
+    .post {
         position: relative;
     }
 
-    .image-overlay {
+    .post-overlay {
         position: absolute;
         left: 0;
         bottom: 0;
@@ -29,7 +29,7 @@
         transition: opacity 0.3s;
     }
 
-    .image-placeholder {
+    .post-placeholder {
         background-color: #aaa;
         width: 800px;
         height: 1200px;
@@ -37,8 +37,8 @@
     }
 
     @media (max-width: 640px) {
-        .image-overlay {
-            // TODO: Handle image overlays gracefully on mobile
+        .post-overlay {
+            // TODO: Handle overlays gracefully on mobile
             display: none;
         }
     }

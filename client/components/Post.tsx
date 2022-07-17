@@ -2,9 +2,10 @@ import { observer } from "mobx-react-lite";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { Post } from "../types";
+import Media from "./Media";
 import "./Post.scss";
 
-// Images within this distance of the viewport will be preloaded
+// Posts within this distance of the viewport will be preloaded
 const preloadDistance = "250px";
 
 interface Props {
@@ -17,7 +18,7 @@ const PostComponent = ({ post }: Props) => {
 
     const url = post.hasSample ? post.sample.url : post.full.url;
 
-    // Create the lazy loading observer on mount. Images are preloaded as
+    // Create the lazy loading observer on mount. Posts are preloaded as
     // the placeholder element nears the edge of the screen.
     useEffect(() => {
         const options: IntersectionObserverInit = {
@@ -32,7 +33,7 @@ const PostComponent = ({ post }: Props) => {
             const e = entries[0];
 
             if (e.isIntersecting) {
-                // Preload the image off screen so we can swap the element immediately.
+                // Preload the post off screen so we can swap the element immediately.
                 // This looks nicer and also prevents an issue where the sudden change
                 // in element height causes a cascading effect of other images being
                 // preloaded before they should be
@@ -62,18 +63,11 @@ const PostComponent = ({ post }: Props) => {
     );
 
     return (
-        <div className="image-container" ref={ref}>
+        <div className="post-container" ref={ref}>
             {loaded ? (
-                <div className="image">
-                    <img referrerPolicy="no-referrer" src={url} alt="" />
-                    <div className="image-overlay">
-                        {/* <a
-                            href={`https://twitter.com/${image.user!.username}`}
-                            target="_blank"
-                        >
-                            @{image.user!.username}
-                        </a> */}
-                        {" - "}
+                <div className="post">
+                    <Media post={post} />
+                    <div className="post-overlay">
                         <a
                             href={`https://gelbooru.com/index.php?page=post&s=view&id=${post.id}`}
                             target="_blank"
@@ -83,7 +77,10 @@ const PostComponent = ({ post }: Props) => {
                     </div>
                 </div>
             ) : (
-                <div className="image-placeholder" />
+                <>
+                    <div className="post-placeholder" />
+                    <Media onLoad={() => setLoaded(true)} post={post} />
+                </>
             )}
         </div>
     );
