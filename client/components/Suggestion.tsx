@@ -11,12 +11,12 @@ const classNameMap: Record<TagType, string> = {
     metadata: "metadata",
 };
 
-export interface Props {
+interface Props {
     onClick: () => void;
     tag: Tag;
 }
 
-export const Suggestion = observer(({ onClick, tag }: Props) => {
+const Suggestion = ({ onClick, tag }: Props) => {
     const className = classNameMap[tag.type ?? "general"];
 
     return (
@@ -27,4 +27,6 @@ export const Suggestion = observer(({ onClick, tag }: Props) => {
             ) : null}
         </div>
     );
-});
+};
+
+export default observer(Suggestion);

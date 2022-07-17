@@ -3,10 +3,12 @@ import React from "react";
 
 import { Tag } from "../types";
 
-export interface Props {
+interface Props {
     tag: Tag;
 }
 
-export const TagComponent = observer(({ tag }: Props) => {
+const TagComponent = ({ tag }: Props) => {
     return <div>{tag.tag}</div>;
-});
+};
+
+export default observer(TagComponent);

@@ -2,14 +2,14 @@ import { observer } from "mobx-react-lite";
 import React, { useMemo } from "react";
 
 import { Tag } from "../types";
-import { Suggestion } from "./Suggestion";
+import Suggestion from "./Suggestion";
 
-export interface Props {
+interface Props {
     onPick: (tag: Tag) => void;
     tags: Tag[];
 }
 
-export const SuggestionList = observer(({ onPick, tags }: Props) => {
+const SuggestionList = ({ onPick, tags }: Props) => {
     const sortedTags = useMemo(
         () => [...tags].sort((a, b) => b.count! - a.count!),
         [tags]
@@ -22,4 +22,6 @@ export const SuggestionList = observer(({ onPick, tags }: Props) => {
             ))}
         </div>
     );
-});
+};
+
+export default observer(SuggestionList);

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { store } from "..";
 import { fetchTagAutocomplete } from "../api";
 import { Tag } from "../types";
-import { SuggestionList } from "./SuggestionList";
+import SuggestionList from "./SuggestionList";
 
 /**
  * The autocomplete fetch delay (in milliseconds). Adding a short delay before
@@ -14,7 +14,7 @@ import { SuggestionList } from "./SuggestionList";
  */
 const fetchDelay = 200;
 
-export const TagSearch = observer(() => {
+const TagSearch = () => {
     const [suggestionsVisible, setSuggestionsVisible] = useState(false);
     const [suggestions, setSuggestions] = useState<Tag[]>([]);
     const [timeoutId, setTimeoutId] = useState(0);
@@ -113,4 +113,6 @@ export const TagSearch = observer(() => {
             </div>
         </div>
     );
-});
+};
+
+export default observer(TagSearch);

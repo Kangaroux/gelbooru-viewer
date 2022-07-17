@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Post } from "../types";
-import { PostComponent } from "./Post";
+import PostComponent from "./Post";
 
 const IMAGES_PER_PAGE = 10;
 
@@ -9,11 +9,11 @@ const IMAGES_PER_PAGE = 10;
 // scrolled this far from the bottom of the page
 const infiniteScrollMargin = "300px 0px";
 
-export interface Props {
+interface Props {
     posts: Post[];
 }
 
-export const ScrollContainer = observer(({ posts }: Props) => {
+const ScrollContainer = ({ posts }: Props) => {
     const [page, setPage] = useState(1);
     const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
     const [observer, setObserver] = useState<IntersectionObserver>();
@@ -86,4 +86,6 @@ export const ScrollContainer = observer(({ posts }: Props) => {
             {!!displayedPosts.length && <div ref={footerCallback} />}
         </div>
     );
-});
+};
+
+export default observer(ScrollContainer);

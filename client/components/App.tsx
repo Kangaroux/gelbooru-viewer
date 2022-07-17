@@ -2,12 +2,12 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 
 import { store } from "..";
-import { SearchButton } from "./SearchButton";
-import { TagList } from "./TagList";
-import { TagSearch } from "./TagSearch";
-import { ScrollContainer } from "./ScrollContainer";
+import SearchButton from "./SearchButton";
+import TagList from "./TagList";
+import TagSearch from "./TagSearch";
+import ScrollContainer from "./ScrollContainer";
 
-export const App = observer(() => {
+const App = () => {
     return (
         <div>
             <React.StrictMode>
@@ -18,4 +18,6 @@ export const App = observer(() => {
             </React.StrictMode>
         </div>
     );
-});
+};
+
+export default observer(App);

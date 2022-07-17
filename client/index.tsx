@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { fetchMostPopularTags } from "./api";
-import { App } from "./components/App";
+import App from "./components/App";
 import { Store } from "./store";
 
 export const store = new Store();

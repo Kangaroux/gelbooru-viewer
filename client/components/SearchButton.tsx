@@ -4,7 +4,7 @@ import React from "react";
 import { store } from "..";
 import { fetchPosts } from "../api";
 
-export const SearchButton = observer(() => {
+const SearchButton = () => {
     const onClick = () => {
         const query = store.tags.map((t) => t.tag).join(" ");
         fetchPosts(query)
@@ -13,4 +13,6 @@ export const SearchButton = observer(() => {
     };
 
     return <button onClick={onClick}>Search</button>;
-});
+};
+
+export default observer(SearchButton);

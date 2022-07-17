@@ -6,11 +6,11 @@ import { Post } from "../types";
 // Images within this distance of the viewport will be preloaded
 const preloadDistance = "250px";
 
-export interface Props {
+interface Props {
     post: Post;
 }
 
-export const PostComponent = observer(({ post }: Props) => {
+const PostComponent = ({ post }: Props) => {
     const [loaded, setLoaded] = useState(false);
     const [observer, setObserver] = useState<IntersectionObserver>();
 
@@ -85,4 +85,6 @@ export const PostComponent = observer(({ post }: Props) => {
             )}
         </div>
     );
-});
+};
+
+export default observer(PostComponent);

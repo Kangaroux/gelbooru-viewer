@@ -2,13 +2,13 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 
 import { Tag } from "../types";
-import { TagComponent } from "./Tag";
+import TagComponent from "./Tag";
 
-export interface Props {
+interface Props {
     tags: Tag[];
 }
 
-export const TagList = observer(({ tags }: Props) => {
+const TagList = ({ tags }: Props) => {
     return (
         <div>
             <ul>
@@ -18,4 +18,6 @@ export const TagList = observer(({ tags }: Props) => {
             </ul>
         </div>
     );
-});
+};
+
+export default observer(TagList);
