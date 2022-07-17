@@ -3,7 +3,7 @@ from enum import Enum
 import requests
 
 
-timeout = 5
+timeout = 10
 
 
 class TagType(Enum):
