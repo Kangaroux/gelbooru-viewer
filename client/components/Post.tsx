@@ -59,13 +59,12 @@ const PostComponent = ({ container, post }: Props) => {
     return (
         <div className="post-container" ref={ref}>
             <div className="post">
-                {!loaded && <div className="post-placeholder" />}
                 {ready && (
                     <div className={`media ${!loaded ? "hidden" : ""}`}>
                         <Media onLoad={() => setLoaded(true)} post={post} />
                     </div>
                 )}
-                {loaded && (
+                {loaded ? (
                     <div className="post-overlay">
                         <a
                             href={`https://gelbooru.com/index.php?page=post&s=view&id=${post.id}`}
@@ -74,7 +73,7 @@ const PostComponent = ({ container, post }: Props) => {
                             View on Gelbooru
                         </a>
                     </div>
-                )}
+                ) : <div className="post-placeholder" />}
             </div>
         </div>
     );
