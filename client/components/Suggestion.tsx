@@ -24,7 +24,7 @@ const Suggestion = ({ onClick, tag }: Props) => {
         <div className="suggestion" onClick={onClick}>
             <span className={className}>{tag.tag}</span>{" "}
             {tag.count !== undefined ? (
-                <span className="color-gray">{tag.count}</span>
+                <span className="tag-count">{tag.count}</span>
             ) : null}
         </div>
     );

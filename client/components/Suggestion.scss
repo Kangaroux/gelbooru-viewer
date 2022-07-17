@@ -1,4 +1,4 @@
-@import "../core";
+@import "../colors";
 
 .suggestion {
     padding: 5px 10px;
@@ -39,5 +39,9 @@
 
     .metadata {
         color: adjust-color($tag-metadata-color, $lightness: 10%);
+    }
+
+    .tag-count {
+        color: #666;
     }
 }

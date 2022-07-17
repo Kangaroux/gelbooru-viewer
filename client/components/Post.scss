@@ -3,9 +3,18 @@
     margin-bottom: 20px;
 
     &,
-    .post,
-    img {
+    .post {
         max-width: 100%;
+    }
+
+    .media {
+        * {
+            max-width: 100%;
+        }
+
+        &.hidden {
+            display: none;
+        }
     }
 
     &:hover .post-overlay {

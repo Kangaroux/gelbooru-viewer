@@ -1,5 +1,6 @@
 @import "@csstools/normalize.css/opinionated";
-@import "./core";
+@import "./colors";
+@import "./icons";
 
 * {
     box-sizing: border-box;
@@ -22,8 +23,4 @@ a:visited {
     &:hover {
         color: #fff;
     }
-}
-
-.color-gray {
-    color: #666;
 }
