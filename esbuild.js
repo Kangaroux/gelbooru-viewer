@@ -10,7 +10,6 @@ const outdir = "dist";
 
 const buildOptions = {
     bundle: true,
-    minify: true,
     sourcemap: true,
     outdir,
     entryPoints,
@@ -24,7 +23,7 @@ if (process.argv.length < 3) {
 
 switch (process.argv[2]) {
     case "build":
-        esbuild.build(buildOptions);
+        esbuild.build({ ...buildOptions, minify: true });
         break;
 
     case "watch":
@@ -33,7 +32,7 @@ switch (process.argv[2]) {
             watch: {
                 onRebuild(err, result) {
                     if (err) console.error(err);
-                    else console.log("rebuilt");
+                    else console.log(new Date(), "rebuilt");
                 }
             }
         }).then(() => console.log("watching..."));

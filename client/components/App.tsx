@@ -10,10 +10,12 @@ import { ScrollContainer } from "./ScrollContainer";
 export const App = observer(() => {
     return (
         <div>
-            <SearchButton />
-            <TagSearch />
-            <TagList tags={store.tags} />
-            <ScrollContainer posts={store.posts} />
+            <React.StrictMode>
+                <SearchButton />
+                <TagSearch />
+                <TagList tags={store.tags} />
+                <ScrollContainer posts={store.posts} />
+            </React.StrictMode>
         </div>
     );
 });
