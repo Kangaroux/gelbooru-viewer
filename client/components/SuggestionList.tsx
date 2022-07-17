@@ -18,7 +18,7 @@ export const SuggestionList = observer(({ onPick, tags }: Props) => {
     return (
         <div className="suggestion-list">
             {sortedTags.map((t) => (
-                <Suggestion onClick={() => onPick(t)} tag={t} />
+                <Suggestion key={t.tag} onClick={() => onPick(t)} tag={t} />
             ))}
         </div>
     );

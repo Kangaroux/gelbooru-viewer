@@ -13,7 +13,7 @@ export const TagList = observer(({ tags }: Props) => {
         <div>
             <ul>
                 {tags.map((t) => (
-                    <TagComponent tag={t} />
+                    <TagComponent key={t.tag} tag={t} />
                 ))}
             </ul>
         </div>
