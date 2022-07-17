@@ -20,9 +20,21 @@ export const Search = observer(() => {
     const [val, setVal] = useState("");
     const refContainer = useRef<HTMLDivElement>(null);
 
-    const onInput = async (e: React.FormEvent<HTMLInputElement>) => {
-        setVal(e.currentTarget.value.trim());
-    };
+    // Removes any tags which are already selected from the suggestion list.
+    const uniqueSuggestions = (() => {
+        let s = val.length ? suggestions : store.mostPopularTags;
+        s = [...s];
+
+        for (const tag of store.tags) {
+            const i = s.indexOf(tag);
+
+            if (i !== -1) {
+                s.splice(i, 1);
+            }
+        }
+
+        return s;
+    })();
 
     const onPickSuggestion = (tag: Tag) => {
         setVal("");
@@ -74,14 +86,14 @@ export const Search = observer(() => {
                 type="text"
                 value={val}
                 onFocus={() => setSuggestionsVisible(true)}
-                onInput={onInput}
+                onInput={(e) => setVal(e.currentTarget.value.trim())}
             />
 
             <div>
                 {suggestionsVisible && (
                     <SuggestionList
                         onPick={onPickSuggestion}
-                        tags={val.length ? suggestions : store.mostPopularTags}
+                        tags={uniqueSuggestions}
                     />
                 )}
             </div>
