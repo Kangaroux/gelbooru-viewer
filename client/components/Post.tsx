@@ -9,10 +9,11 @@ import "./Post.scss";
 const preloadDistance = "500px";
 
 interface Props {
+    container: HTMLElement;
     post: Post;
 }
 
-const PostComponent = ({ post }: Props) => {
+const PostComponent = ({ container, post }: Props) => {
     const [loaded, setLoaded] = useState(false);
     const [ready, setReady] = useState(false);
     const [observer, setObserver] = useState<IntersectionObserver>();
@@ -21,7 +22,8 @@ const PostComponent = ({ post }: Props) => {
     // post as ready.
     useEffect(() => {
         const options: IntersectionObserverInit = {
-            rootMargin: preloadDistance + " 0px",
+            root: container,
+            rootMargin: preloadDistance,
         };
 
         const viewportObserver = new IntersectionObserver((entries) => {
@@ -56,35 +58,39 @@ const PostComponent = ({ post }: Props) => {
 
     let inner;
 
-    if (ready) {
-        if (loaded) {
-            inner = (
-                <div className="post">
-                    <Media post={post} />
-                    <div className="post-overlay">
-                        <a
-                            href={`https://gelbooru.com/index.php?page=post&s=view&id=${post.id}`}
-                            target="_blank"
-                        >
-                            View on Gelbooru
-                        </a>
-                    </div>
+    /*
+    Initially, the post isn't ready or loaded, so we render a placeholder.
+
+    When the post is (or close to) being visible, create the Media component
+    and hide it.
+
+    Once the Media component is finished loading, then we can display it.
+    */
+    if (!ready && !loaded) {
+        inner = <div className="post-placeholder" />;
+    } else if (ready && !loaded) {
+        inner = (
+            <>
+                <div className="post-placeholder" />
+                <div style={{ display: "none" }}>
+                    <Media onLoad={() => setLoaded(true)} post={post} />
                 </div>
-            );
-        } else {
-            inner = (
-                <>
-                    <div className="post-placeholder" />
-                    {/*
-                    Preload the post by creating an invisible element on the page. Once the
-                    post is ready to be displayed, loaded will be set to true.
-                    */}
-                    <div style={{ display: "none" }}>
-                        <Media onLoad={() => setLoaded(true)} post={post} />
-                    </div>
-                </>
-            );
-        }
+            </>
+        );
+    } else {
+        inner = (
+            <div className="post">
+                <Media post={post} />
+                <div className="post-overlay">
+                    <a
+                        href={`https://gelbooru.com/index.php?page=post&s=view&id=${post.id}`}
+                        target="_blank"
+                    >
+                        View on Gelbooru
+                    </a>
+                </div>
+            </div>
+        );
     }
 
     return (

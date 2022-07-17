@@ -78,9 +78,14 @@ const ScrollContainer = ({ posts }: Props) => {
     return (
         <div className="scroll-container" ref={containerCallback}>
             <div className="scroll-container-flex">
-                {displayedPosts.map((post) => (
-                    <PostComponent post={post} key={post.id} />
-                ))}
+                {containerRef &&
+                    displayedPosts.map((post) => (
+                        <PostComponent
+                            post={post}
+                            key={post.id}
+                            container={containerRef}
+                        />
+                    ))}
             </div>
             {!!displayedPosts.length && <div ref={footerCallback} />}
         </div>
