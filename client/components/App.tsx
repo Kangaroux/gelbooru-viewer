@@ -2,18 +2,14 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 
 import { store } from "..";
-import SearchButton from "./SearchButton";
-import TagList from "./TagList";
-import TagSearch from "./TagSearch";
 import ScrollContainer from "./ScrollContainer";
+import Sidebar from "./Sidebar";
 
 const App = () => {
     return (
         <div>
             <React.StrictMode>
-                <SearchButton />
-                <TagSearch />
-                <TagList tags={store.tags} />
+                <Sidebar />
                 <ScrollContainer posts={store.posts} />
             </React.StrictMode>
         </div>

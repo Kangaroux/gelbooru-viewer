@@ -6,10 +6,13 @@ export class Store {
     mostPopularTags: Tag[];
     tags: Tag[];
 
+    sidebarOpen: boolean;
+
     constructor() {
         this.posts = [];
         this.mostPopularTags = [];
         this.tags = [];
+        this.sidebarOpen = false;
 
         makeAutoObservable(this);
     }
@@ -38,5 +41,9 @@ export class Store {
 
     clearPosts() {
         this.posts = [];
+    }
+
+    setSidebarOpen(open: boolean) {
+        this.sidebarOpen = open;
     }
 }

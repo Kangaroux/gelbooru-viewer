@@ -94,8 +94,9 @@ const TagSearch = () => {
     }, [val]);
 
     return (
-        <div ref={refContainer}>
+        <div className="search-container" ref={refContainer}>
             <input
+                className="tag-search-input"
                 type="text"
                 value={val}
                 onFocus={() => setSuggestionsVisible(true)}
