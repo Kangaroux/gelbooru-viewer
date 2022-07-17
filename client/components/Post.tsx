@@ -6,7 +6,7 @@ import Media from "./Media";
 import "./Post.scss";
 
 // Posts within this distance of the viewport will be preloaded
-const preloadDistance = "250px";
+const preloadDistance = "500px";
 
 interface Props {
     post: Post;
@@ -14,12 +14,11 @@ interface Props {
 
 const PostComponent = ({ post }: Props) => {
     const [loaded, setLoaded] = useState(false);
+    const [ready, setReady] = useState(false);
     const [observer, setObserver] = useState<IntersectionObserver>();
 
-    const url = post.hasSample ? post.sample.url : post.full.url;
-
-    // Create the lazy loading observer on mount. Posts are preloaded as
-    // the placeholder element nears the edge of the screen.
+    // When the container is scrolled near the edge of the screen, set the
+    // post as ready.
     useEffect(() => {
         const options: IntersectionObserverInit = {
             rootMargin: preloadDistance + " 0px",
@@ -33,14 +32,8 @@ const PostComponent = ({ post }: Props) => {
             const e = entries[0];
 
             if (e.isIntersecting) {
-                // Preload the post off screen so we can swap the element immediately.
-                // This looks nicer and also prevents an issue where the sudden change
-                // in element height causes a cascading effect of other images being
-                // preloaded before they should be
-                const img = new window.Image();
-                img.onload = () => setLoaded(true);
-                img.referrerPolicy = "no-referrer";
-                img.src = url;
+                setReady(true);
+                viewportObserver.disconnect();
             }
         }, options);
 
@@ -49,8 +42,7 @@ const PostComponent = ({ post }: Props) => {
         return () => observer?.disconnect();
     }, []);
 
-    // Observe the footer element which tells us when we are close to
-    // the bottom of the page
+    // Observe the container once it's rendered so we can track it.
     const ref = useCallback(
         (el: HTMLElement | null) => {
             if (!observer || !el) {
@@ -62,9 +54,11 @@ const PostComponent = ({ post }: Props) => {
         [observer]
     );
 
-    return (
-        <div className="post-container" ref={ref}>
-            {loaded ? (
+    let inner;
+
+    if (ready) {
+        if (loaded) {
+            inner = (
                 <div className="post">
                     <Media post={post} />
                     <div className="post-overlay">
@@ -76,12 +70,26 @@ const PostComponent = ({ post }: Props) => {
                         </a>
                     </div>
                 </div>
-            ) : (
+            );
+        } else {
+            inner = (
                 <>
                     <div className="post-placeholder" />
-                    <Media onLoad={() => setLoaded(true)} post={post} />
+                    {/*
+                    Preload the post by creating an invisible element on the page. Once the
+                    post is ready to be displayed, loaded will be set to true.
+                    */}
+                    <div style={{ display: "none" }}>
+                        <Media onLoad={() => setLoaded(true)} post={post} />
+                    </div>
                 </>
-            )}
+            );
+        }
+    }
+
+    return (
+        <div className="post-container" ref={ref}>
+            {inner}
         </div>
     );
 };
