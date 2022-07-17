@@ -14,13 +14,11 @@ import { SuggestionList } from "./SuggestionList";
 const fetchDelay = 200;
 
 export const Search = observer(() => {
-    const [focused, setFocused] = useState(false);
+    const [suggestionsVisible, setSuggestionsVisible] = useState(false);
     const [suggestions, setSuggestions] = useState<Tag[]>([]);
     const [timeoutId, setTimeoutId] = useState(0);
     const [val, setVal] = useState("");
-    const suggestionRef = useRef(null);
-
-    const showSuggestions = !!(focused || suggestions.length);
+    const refContainer = useRef<HTMLDivElement>(null);
 
     const onInput = async (e: React.FormEvent<HTMLInputElement>) => {
         setVal(e.currentTarget.value.trim());
@@ -31,6 +29,27 @@ export const Search = observer(() => {
         store.addTag(tag);
     };
 
+    // Hides the suggestion list when the user clicks outside of the container.
+    // Using onBlur to check doesn't work since the blur event occurs before the
+    // click event, which hides the list before the click is registered.
+    useEffect(() => {
+        const onClick = (e: MouseEvent) => {
+            const container = refContainer.current;
+
+            if (!container || !e.target) {
+                return;
+            }
+
+            if (!container.contains(e.target as HTMLElement)) {
+                setSuggestionsVisible(false);
+            }
+        };
+
+        window.addEventListener("click", onClick);
+        return () => window.removeEventListener("click", onClick);
+    }, []);
+
+    // Fetch a new list of tag suggestions when the search input is changed.
     useEffect(() => {
         clearTimeout(timeoutId);
 
@@ -50,22 +69,16 @@ export const Search = observer(() => {
     }, [val]);
 
     return (
-        <div>
+        <div ref={refContainer}>
             <input
                 type="text"
                 value={val}
-                onBlur={(e) => {
-                    console.log(e.relatedTarget, suggestionRef?.current);
-                    if (true) {
-                        setFocused(false);
-                    }
-                }}
-                onFocus={() => setFocused(true)}
+                onFocus={() => setSuggestionsVisible(true)}
                 onInput={onInput}
             />
 
-            <div ref={suggestionRef}>
-                {showSuggestions && (
+            <div>
+                {suggestionsVisible && (
                     <SuggestionList
                         onPick={onPickSuggestion}
                         tags={val.length ? suggestions : store.mostPopularTags}
