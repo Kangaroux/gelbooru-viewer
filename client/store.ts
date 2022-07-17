@@ -39,8 +39,8 @@ export class Store {
         this.posts.push(...posts);
     }
 
-    clearPosts() {
-        this.posts = [];
+    setPosts(posts: Post[]) {
+        this.posts = posts;
     }
 
     setSidebarOpen(open: boolean) {

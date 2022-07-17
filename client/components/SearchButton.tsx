@@ -8,7 +8,7 @@ const SearchButton = () => {
     const onClick = () => {
         const query = store.tags.map((t) => t.tag).join(" ");
         fetchPosts(query)
-            .then((posts) => store.addPosts(posts.posts))
+            .then((posts) => store.setPosts(posts.posts))
             .catch((e) => console.log(e, e.response));
     };
 
