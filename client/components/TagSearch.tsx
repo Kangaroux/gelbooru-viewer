@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useRef, useState } from "react";
+
 import { store } from "..";
 import { fetchTagAutocomplete } from "../api";
 import { Tag } from "../types";
@@ -13,7 +14,7 @@ import { SuggestionList } from "./SuggestionList";
  */
 const fetchDelay = 200;
 
-export const Search = observer(() => {
+export const TagSearch = observer(() => {
     const [suggestionsVisible, setSuggestionsVisible] = useState(false);
     const [suggestions, setSuggestions] = useState<Tag[]>([]);
     const [timeoutId, setTimeoutId] = useState(0);

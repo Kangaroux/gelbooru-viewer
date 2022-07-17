@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useMemo } from "react";
+
 import { Tag } from "../types";
 import { Suggestion } from "./Suggestion";
 

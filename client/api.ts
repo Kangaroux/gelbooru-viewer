@@ -1,10 +1,11 @@
 import { Post, Tag } from "./types";
 
 export class APIError extends Error {
+    name = "APIError";
     response: Response;
 
-    constructor(response: Response) {
-        super();
+    constructor(message: string, response: Response) {
+        super(message);
         this.response = response;
     }
 }
@@ -16,10 +17,12 @@ export interface PostsResponse {
 }
 
 export async function fetchPosts(query: string, page = 0) {
-    const resp = await fetch(`/api/posts?q=${query}&p=${page}`);
+    const resp = await fetch(
+        `/api/posts?q=${encodeURIComponent(query)}&p=${page}`
+    );
 
     if (!resp.ok) {
-        throw new APIError(resp);
+        throw new APIError("error fetching posts", resp);
     }
 
     const data = await resp.json();
@@ -72,7 +75,7 @@ export async function fetchTagAutocomplete(query: string, count?: number) {
     const resp = await fetch(url);
 
     if (!resp.ok) {
-        throw new APIError(resp);
+        throw new APIError("error fetching tag suggestions", resp);
     }
 
     const data = await resp.json();

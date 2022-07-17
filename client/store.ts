@@ -31,4 +31,12 @@ export class Store {
             this.tags.slice(i, 1);
         }
     }
+
+    addPosts(posts: Post[]) {
+        this.posts.push(...posts);
+    }
+
+    clearPosts() {
+        this.posts = [];
+    }
 }
