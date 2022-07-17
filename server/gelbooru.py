@@ -3,6 +3,9 @@ from enum import Enum
 import requests
 
 
+timeout = 5
+
+
 class TagType(Enum):
     Artist = "artist"
     Copyright = "copyright"
@@ -23,6 +26,7 @@ def get_posts(query: str, page: int) -> dict:
             "pid": page,
             "json": 1,
         },
+        timeout=timeout,
     )
 
     return resp.json()
@@ -40,6 +44,7 @@ def get_tag_autocomplete_suggestions(count: int, query: str) -> dict:
             "orderby": "count",
             "json": 1,
         },
+        timeout=timeout,
     )
 
     return resp.json()
