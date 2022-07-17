@@ -38,7 +38,6 @@ def posts():
     Responses:
         200: A list of up to 100 posts.
         400: Error response if the p param is not a number or is negative.
-        400: Error response if the q param is blank or missing.
     Schema:
         {
             "total_count": 12345,
@@ -82,11 +81,6 @@ def posts():
     if page < 0:
         return message_response(
             "Page must not be negative.",
-            status=400,
-        )
-    elif not query:
-        return message_response(
-            "Required query param 'q' is blank or missing.",
             status=400,
         )
 
