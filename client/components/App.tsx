@@ -5,7 +5,7 @@ import { store } from "..";
 import { SearchButton } from "./SearchButton";
 import { TagList } from "./TagList";
 import { TagSearch } from "./TagSearch";
-import { Viewer } from "./Viewer";
+import { ScrollContainer } from "./ScrollContainer";
 
 export const App = observer(() => {
     return (
@@ -13,7 +13,7 @@ export const App = observer(() => {
             <SearchButton />
             <TagSearch />
             <TagList tags={store.tags} />
-            <Viewer />
+            <ScrollContainer posts={store.posts} />
         </div>
     );
 });

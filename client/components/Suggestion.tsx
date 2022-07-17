@@ -22,7 +22,9 @@ export const Suggestion = observer(({ onClick, tag }: Props) => {
     return (
         <div className="suggestion" onClick={onClick}>
             <span className={className}>{tag.tag}</span>{" "}
-            {tag.count !== undefined ? <span className="color-gray">{tag.count}</span> : null}
+            {tag.count !== undefined ? (
+                <span className="color-gray">{tag.count}</span>
+            ) : null}
         </div>
     );
 });

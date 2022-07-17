@@ -47,7 +47,7 @@ export const TagSearch = observer(() => {
                 onPickSuggestion({ tag: val });
             }
         }
-    }
+    };
 
     const onPickSuggestion = (tag: Tag) => {
         setVal("");
