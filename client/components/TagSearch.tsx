@@ -5,6 +5,7 @@ import { store } from "..";
 import { fetchTagAutocomplete } from "../api";
 import { Tag } from "../types";
 import SuggestionList from "./SuggestionList";
+import "./TagSearch.scss";
 
 /**
  * The autocomplete fetch delay (in milliseconds). Adding a short delay before

@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 
 import { Tag } from "../types";
 import Suggestion from "./Suggestion";
+import "./SuggestionList.scss";
 
 interface Props {
     onPick: (tag: Tag) => void;

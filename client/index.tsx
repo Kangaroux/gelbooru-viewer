@@ -4,7 +4,7 @@ import { fetchMostPopularTags } from "./api";
 import App from "./components/App";
 import { Store } from "./store";
 
-import "./style.scss";
+import "./app.scss";
 
 export const store = new Store();
 fetchMostPopularTags().then((resp) =>

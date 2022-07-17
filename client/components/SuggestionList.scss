@@ -1,0 +1,11 @@
+.suggestion-list {
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    color: #ddd;
+    line-height: 0;
+    max-height: 400px;
+    overflow-y: scroll;
+}

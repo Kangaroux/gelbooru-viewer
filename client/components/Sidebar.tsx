@@ -5,6 +5,7 @@ import { store } from "..";
 import SearchButton from "./SearchButton";
 import TagList from "./TagList";
 import TagSearch from "./TagSearch";
+import "./Sidebar.scss";
 
 export const Sidebar = () => {
     const open = store.sidebarOpen;

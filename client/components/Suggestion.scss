@@ -1,0 +1,43 @@
+@import "../core";
+
+.suggestion {
+    padding: 5px 10px;
+    line-height: 1.5em;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .artist {
+        color: adjust-color(
+            $tag-artist-color,
+            $saturation: -10%,
+            $lightness: 30%
+        );
+    }
+
+    .character {
+        color: adjust-color(
+            $tag-character-color,
+            $saturation: -20%,
+            $lightness: 10%
+        );
+    }
+
+    .copyright {
+        color: adjust-color(
+            $tag-copyright-color,
+            $saturation: -20%,
+            $lightness: 30%
+        );
+    }
+
+    .general {
+        color: adjust-color($tag-general-color, $lightness: 10%);
+    }
+
+    .metadata {
+        color: adjust-color($tag-metadata-color, $lightness: 10%);
+    }
+}

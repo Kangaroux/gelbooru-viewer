@@ -1,0 +1,29 @@
+@import "@csstools/normalize.css/opinionated";
+@import "./core";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Sans Serif";
+    font-size: 16px;
+
+    background-color: $bg-color;
+    color: $text-color;
+    font-family: sans-serif;
+}
+
+a,
+a:visited {
+    color: #ccc;
+    font-weight: bold;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.color-gray {
+    color: #666;
+}

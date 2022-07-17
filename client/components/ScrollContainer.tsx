@@ -1,7 +1,8 @@
 import { observer } from "mobx-react-lite";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Post } from "../types";
 import PostComponent from "./Post";
+import "./ScrollContainer.scss";
 
 const IMAGES_PER_PAGE = 10;
 

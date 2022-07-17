@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { Post } from "../types";
+import "./Post.scss";
 
 // Images within this distance of the viewport will be preloaded
 const preloadDistance = "250px";

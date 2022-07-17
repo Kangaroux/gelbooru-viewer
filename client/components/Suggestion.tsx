@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 
 import { Tag, TagType } from "../types";
+import "./Suggestion.scss";
 
 const classNameMap: Record<TagType, string> = {
     artist: "artist",

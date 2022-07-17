@@ -1,0 +1,45 @@
+.image-container {
+    line-height: 0;
+    margin-bottom: 20px;
+
+    &,
+    .image,
+    img {
+        max-width: 100%;
+    }
+
+    &:hover .image-overlay {
+        opacity: 1;
+    }
+
+    .image {
+        position: relative;
+    }
+
+    .image-overlay {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+        background-color: rgba(#000, 0.8);
+        line-height: 1.5;
+        opacity: 0;
+
+        transition: opacity 0.3s;
+    }
+
+    .image-placeholder {
+        background-color: #aaa;
+        width: 800px;
+        height: 1200px;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 640px) {
+        .image-overlay {
+            // TODO: Handle image overlays gracefully on mobile
+            display: none;
+        }
+    }
+}
