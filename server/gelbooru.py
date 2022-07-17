@@ -28,15 +28,15 @@ def get_posts(query: str, page: int) -> dict:
     return resp.json()
 
 
-def get_tag_autocomplete_suggestions(tag: str) -> dict:
+def get_tag_autocomplete_suggestions(count: int, query: str) -> dict:
     resp = requests.get(
         "https://gelbooru.com/index.php",
         {
             "page": "dapi",
             "s": "tag",
             "q": "index",
-            "name_pattern": tag + "%",
-            "limit": 20,
+            "name_pattern": query + "%",
+            "limit": count,
             "orderby": "count",
             "json": 1,
         },

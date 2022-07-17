@@ -139,6 +139,7 @@ def tag_autocomplete():
 
     Method: GET
     Params:
+        n: The max number of tags to fetch (default: 20)
         q: The tag name to autocomplete.
     Responses:
         200: A list of up to 20 tag suggestions (excluding deprecated tags).
@@ -153,8 +154,9 @@ def tag_autocomplete():
             ]
         }
     """
+    count = request.args.get("n", 20, type=int)
     query = request.args.get("q", "")
-    gb_resp = gb.get_tag_autocomplete_suggestions(query)
+    gb_resp = gb.get_tag_autocomplete_suggestions(count=count, query=query)
     data = []
 
     for tag in gb_resp.get("tag", []):

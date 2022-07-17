@@ -62,8 +62,14 @@ export interface TagAutocompleteResponse {
     suggestions: Tag[];
 }
 
-export async function fetchTagAutocomplete(query: string) {
-    const resp = await fetch(`/api/tag-autocomplete?q=${query}`);
+export async function fetchTagAutocomplete(query: string, count?: number) {
+    let url = `/api/tag-autocomplete?q=${query}`;
+
+    if (count !== undefined) {
+        url += `&n=${count}`;
+    }
+
+    const resp = await fetch(url);
 
     if (!resp.ok) {
         throw new APIError(resp);
@@ -87,5 +93,5 @@ export async function fetchTagAutocomplete(query: string) {
 }
 
 export async function fetchMostPopularTags() {
-    return fetchTagAutocomplete("");
+    return fetchTagAutocomplete("", 50);
 }
