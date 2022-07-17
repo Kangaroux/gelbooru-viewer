@@ -18,9 +18,7 @@ const ScrollContainer = ({ posts }: Props) => {
     const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
     const [observer, setObserver] = useState<IntersectionObserver>();
 
-    const displayedPosts = useMemo(() => {
-        return posts.slice(0, page * IMAGES_PER_PAGE);
-    }, [posts, page]);
+    const displayedPosts = posts.slice(0, page * IMAGES_PER_PAGE);
 
     // Reset the container if the images change
     useEffect(() => {

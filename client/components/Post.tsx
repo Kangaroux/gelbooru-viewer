@@ -14,7 +14,7 @@ const PostComponent = ({ post }: Props) => {
     const [loaded, setLoaded] = useState(false);
     const [observer, setObserver] = useState<IntersectionObserver>();
 
-    const url = post.full.url;
+    const url = post.hasSample ? post.sample.url : post.full.url;
 
     // Create the lazy loading observer on mount. Images are preloaded as
     // the placeholder element nears the edge of the screen.
@@ -37,6 +37,7 @@ const PostComponent = ({ post }: Props) => {
                 // preloaded before they should be
                 const img = new window.Image();
                 img.onload = () => setLoaded(true);
+                img.referrerPolicy = "no-referrer";
                 img.src = url;
             }
         }, options);
@@ -63,7 +64,7 @@ const PostComponent = ({ post }: Props) => {
         <div className="image-container" ref={ref}>
             {loaded ? (
                 <div className="image">
-                    <img src={url} alt="" />
+                    <img referrerPolicy="no-referrer" src={url} alt="" />
                     <div className="image-overlay">
                         {/* <a
                             href={`https://twitter.com/${image.user!.username}`}
