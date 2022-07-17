@@ -34,7 +34,9 @@ export type TagType =
     | "metadata";
 
 export interface Tag {
-    count: number;
     tag: string;
-    type: TagType;
+
+    // This could be undefined if the user entered it manually.
+    count?: number;
+    type?: TagType;
 }

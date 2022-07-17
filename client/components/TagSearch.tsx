@@ -37,6 +37,18 @@ export const TagSearch = observer(() => {
         return s;
     })();
 
+    const onKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter" && val.length) {
+            // Add the first suggestion if there is one, otherwise just add the tag as
+            // a manually entered one.
+            if (suggestions.length) {
+                onPickSuggestion(suggestions[0]);
+            } else {
+                onPickSuggestion({ tag: val });
+            }
+        }
+    }
+
     const onPickSuggestion = (tag: Tag) => {
         setVal("");
         store.addTag(tag);
@@ -88,6 +100,7 @@ export const TagSearch = observer(() => {
                 value={val}
                 onFocus={() => setSuggestionsVisible(true)}
                 onInput={(e) => setVal(e.currentTarget.value.trim())}
+                onKeyDown={onKeyDown}
             />
 
             <div>

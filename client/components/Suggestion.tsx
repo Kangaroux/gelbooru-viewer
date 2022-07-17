@@ -17,12 +17,12 @@ export interface Props {
 }
 
 export const Suggestion = observer(({ onClick, tag }: Props) => {
-    const className = classNameMap[tag.type];
+    const className = classNameMap[tag.type ?? "general"];
 
     return (
         <div className="suggestion" onClick={onClick}>
             <span className={className}>{tag.tag}</span>{" "}
-            <span className="color-gray">{tag.count}</span>
+            {tag.count !== undefined ? <span className="color-gray">{tag.count}</span> : null}
         </div>
     );
 });

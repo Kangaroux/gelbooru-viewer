@@ -5,9 +5,9 @@ import { store } from "..";
 export const Viewer = observer(() => {
     return (
         <div>
-            {store.posts.map((p) => (
+            {store.posts.slice(0, 5).map((p) => (
                 <div>
-                    <img src={p.sample.url} />
+                    <img referrerPolicy="no-referrer" src={p.sample.url} />
                 </div>
             ))}
         </div>

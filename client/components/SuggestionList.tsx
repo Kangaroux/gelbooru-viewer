@@ -11,7 +11,7 @@ export interface Props {
 
 export const SuggestionList = observer(({ onPick, tags }: Props) => {
     const sortedTags = useMemo(
-        () => [...tags].sort((a, b) => b.count - a.count),
+        () => [...tags].sort((a, b) => b.count! - a.count!),
         [tags]
     );
 
